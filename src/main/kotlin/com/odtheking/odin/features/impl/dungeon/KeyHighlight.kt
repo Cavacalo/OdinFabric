@@ -11,6 +11,7 @@ import com.odtheking.odin.utils.Color
 import com.odtheking.odin.utils.Color.Companion.withAlpha
 import com.odtheking.odin.utils.Colors
 import com.odtheking.odin.utils.alert
+import com.odtheking.odin.utils.render.drawLine
 import com.odtheking.odin.utils.render.drawWireFrameBox
 import com.odtheking.odin.utils.skyblock.dungeon.DungeonUtils
 import net.minecraft.network.protocol.game.ClientboundSetEntityDataPacket
@@ -28,6 +29,9 @@ object KeyHighlight : Module(
 
     // New setting: Depth Check
     private val depthCheck by BooleanSetting("Depth Check", true, desc = "Highlights entities through walls when off")
+
+    // Tracer setting for keys
+    private val tracer by BooleanSetting("Tracer", false, desc = "Draws a line to keys.")
 
     private var currentKey: KeyType? = null
 
@@ -52,6 +56,12 @@ object KeyHighlight : Module(
                 }
                 val position = keyType.entity?.position() ?: return@on
                 context.drawWireFrameBox(AABB.unitCubeFromLowerCorner(position.add(-0.5, 1.0, -0.5)), keyType.color(), 8f, depthCheck)
+
+                if (tracer) {
+                    mc.player?.let { player ->
+                        context.drawLine(listOf(player.eyePosition, position.add(0.0, 1.0, 0.0)), color = Colors.MINECRAFT_RED, depthCheck)
+                    }
+                }
             }
         }
 

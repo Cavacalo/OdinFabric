@@ -9,6 +9,7 @@ import com.odtheking.odin.events.WorldLoadEvent
 import com.odtheking.odin.events.core.on
 import com.odtheking.odin.features.Module
 import com.odtheking.odin.utils.Colors
+import com.odtheking.odin.utils.render.drawLine
 import com.odtheking.odin.utils.render.drawStyledBox
 import com.odtheking.odin.utils.renderBoundingBox
 import com.odtheking.odin.utils.skyblock.dungeon.DungeonUtils
@@ -30,6 +31,9 @@ object Highlight : Module(
 
     // New setting: Depth Check
     private val depthCheck by BooleanSetting("Depth Check", true, desc = "Highlights entities through walls when off")
+
+    // Tracer setting for starred mobs
+    private val tracer by BooleanSetting("Tracer", false, desc = "Draws a line to starred mobs.")
 
     private val dungeonMobSpawns = hashSetOf("Lurker", "Dreadlord", "Souleater", "Zombie", "Skeleton", "Skeletor", "Sniper", "Super Archer", "Spider", "Fels", "Withermancer", "Lost Adventurer", "Angry Archaeologist", "Frozen Adventurer")
     // https://regex101.com/r/QQf502/1
@@ -71,6 +75,14 @@ object Highlight : Module(
             entities.forEach { entity ->
                 if (!entity.isAlive) return@forEach
                 context.drawStyledBox(entity.renderBoundingBox, color, renderStyle, depthCheck)
+
+                if (tracer) {
+                    val pos = entity.position()
+                    mc.player?.let { player ->
+                        // drawLine(start/end, color, depth)
+                        context.drawLine(listOf(player.eyePosition, pos.add(0.0, 1.0, 0.0)), color = Colors.YELLOW, depthCheck)
+                    }
+                }
             }
         }
 
