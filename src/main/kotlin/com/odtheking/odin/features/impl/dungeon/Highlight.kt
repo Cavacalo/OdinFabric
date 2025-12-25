@@ -9,6 +9,7 @@ import com.odtheking.odin.events.WorldLoadEvent
 import com.odtheking.odin.events.core.on
 import com.odtheking.odin.features.Module
 import com.odtheking.odin.utils.Colors
+import com.odtheking.odin.utils.renderPos
 import com.odtheking.odin.utils.render.drawLine
 import com.odtheking.odin.utils.render.drawStyledBox
 import com.odtheking.odin.utils.renderBoundingBox
@@ -78,7 +79,7 @@ object Highlight : Module(
 
                 if (tracer) {
                     val pos = entity.position()
-                    mc.player?.let { player ->
+                    mc.player?.let {
                         // drawLine(start/end, color, depth)
                         context.drawLine(listOf(it.renderPos, pos.add(0.0, 1.0, 0.0)), color = Colors.MINECRAFT_YELLOW, depthCheck)
                     }
