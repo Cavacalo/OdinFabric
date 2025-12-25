@@ -8,6 +8,7 @@ import com.odtheking.odin.events.TickEvent
 import com.odtheking.odin.events.WorldLoadEvent
 import com.odtheking.odin.events.core.on
 import com.odtheking.odin.features.Module
+import com.odtheking.odin.utils.VecUtils
 import com.odtheking.odin.utils.Colors
 import com.odtheking.odin.utils.renderPos
 import com.odtheking.odin.utils.render.drawLine
