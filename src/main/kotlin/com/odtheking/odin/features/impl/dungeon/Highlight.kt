@@ -8,7 +8,6 @@ import com.odtheking.odin.events.TickEvent
 import com.odtheking.odin.events.WorldLoadEvent
 import com.odtheking.odin.events.core.on
 import com.odtheking.odin.features.Module
-import com.odtheking.odin.utils.VecUtils
 import com.odtheking.odin.utils.Colors
 import com.odtheking.odin.utils.renderPos
 import com.odtheking.odin.utils.render.drawLine
@@ -82,7 +81,7 @@ object Highlight : Module(
                     val pos = entity.position()
                     mc.player?.let {
                         // drawLine(start/end, color, depth)
-                        context.drawLine(listOf(it.renderPos.add(it.forward).addVec(y = it.eyeHeight), pos.add(0.0, 1.0, 0.0)), color = Colors.MINECRAFT_YELLOW, depthCheck)
+                        context.drawLine(listOf(player.renderPos), pos.add(0.0, 1.0, 0.0)), color = Colors.MINECRAFT_YELLOW, depthCheck)
                     }
                 }
             }
