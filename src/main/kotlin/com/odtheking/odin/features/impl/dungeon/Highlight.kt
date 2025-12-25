@@ -81,7 +81,7 @@ object Highlight : Module(
                     val pos = entity.position()
                     mc.player?.let {
                         // drawLine(start/end, color, depth)
-                        context.drawLine(listOf(it.renderPos, pos.add(0.0, 1.0, 0.0)), color = Colors.MINECRAFT_YELLOW, depthCheck)
+                        context.drawLine(listOf(it.renderPos.add(it.forward).addVec(y = it.eyeHeight), pos.add(0.0, 1.0, 0.0)), color = Colors.MINECRAFT_YELLOW, depthCheck)
                     }
                 }
             }
