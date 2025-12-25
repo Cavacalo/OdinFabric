@@ -58,8 +58,8 @@ object KeyHighlight : Module(
                 context.drawWireFrameBox(AABB.unitCubeFromLowerCorner(position.add(-0.5, 1.0, -0.5)), keyType.color(), 8f, depthCheck)
 
                 if (tracer) {
-                    mc.player?.let { player ->
-                        context.drawLine(listOf(player.eyePosition, position.add(0.0, 1.0, 0.0)), color = Colors.MINECRAFT_RED, depthCheck)
+                    mc.player?.let {
+                        context.drawLine(listOf(it.renderPos, position.add(0.0, 1.0, 0.0)), color = Colors.MINECRAFT_RED, depthCheck)
                     }
                 }
             }
