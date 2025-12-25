@@ -96,7 +96,7 @@ object Highlight : Module(
             is ArmorStand -> false
             is WitherBoss -> false
             is Player -> entity.uuid.version() == 2 && entity != mc.player
-            else -> !entity.isInvisible
+            else -> true
         }
 
     @JvmStatic
